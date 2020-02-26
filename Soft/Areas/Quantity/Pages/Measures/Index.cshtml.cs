@@ -6,24 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Abc.Facade;
+using Abc.Facade.Quantity;
+using Abc.Pages.Quantity;
 using Abc.Soft.Data;
 
 namespace Abc.Soft
 {
-    public class IndexModel : PageModel
+    public class IndexModel : MeasuresPage
     {
-        private readonly Abc.Soft.Data.ApplicationDbContext _context;
+        public IndexModel(IMeasuresRepository r) : base(r) { }
 
-        public IndexModel(Abc.Soft.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        public IList<MeasureView> MeasureView { get;set; }
 
         public async Task OnGetAsync()
         {
-            MeasureView = await _context.Measures.ToListAsync();
+            var l = await data.Get();
+            Items = new List<MeasureView>();
+
+            foreach (var e in l)
+            {
+                Items.Add(MeasureViewFactory.Create(e));
+            }
         }
     }
 }
