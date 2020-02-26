@@ -22,7 +22,7 @@ namespace Abc.Infra.Quantity
             throw new System.NotImplementedException();
         }
 
-        public Task Delete(string id)
+        public async Task Delete(string id)
         {
             throw new System.NotImplementedException();
         }
