@@ -1,11 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Abc.Facade;
 using Abc.Facade.Quantity;
 using Abc.Pages.Quantity;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Abc.Soft
+namespace Abc.Soft.Areas.Quantity.Pages.Measures
 {
     public class CreateModel : MeasuresPage
     {
@@ -19,7 +17,7 @@ namespace Abc.Soft
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid) return Page();
-            await data.Add(MeasureViewFactory.Create(MeasureView));
+            await data.Add(MeasureViewFactory.Create(Item));
 
             return RedirectToPage("./Index");
         }

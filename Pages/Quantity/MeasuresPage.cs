@@ -12,6 +12,6 @@ namespace Abc.Pages.Quantity
         protected internal MeasuresPage(IMeasuresRepository r) => data = r;
         
         [BindProperty]
-        public MeasureView MeasureView { get; set; }
+        public MeasureView Item { get; set; }
     }
 }
