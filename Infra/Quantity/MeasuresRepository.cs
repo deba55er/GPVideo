@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Abc.Domain.Quantity;
 using Abc.Facade.Quantity;
@@ -16,7 +17,9 @@ namespace Abc.Infra.Quantity
         }
         public async Task<List<Measure>> Get()
         {
-            throw new System.NotImplementedException();
+            var l = await db.Measures.ToListAsync();
+
+            return l.Select(e => new Measure(e)).ToList();
         }
 
         public async Task<Measure> Get(string id)

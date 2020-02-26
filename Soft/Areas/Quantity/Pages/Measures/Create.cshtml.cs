@@ -1,29 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Abc.Facade;
-using Abc.Soft.Data;
+using Abc.Facade.Quantity;
 
 namespace Abc.Soft
 {
     public class CreateModel : PageModel
     {
-        private readonly Abc.Soft.Data.ApplicationDbContext _context;
+        private readonly IMeasuresRepository data;
 
-        public CreateModel(Abc.Soft.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        public CreateModel(IMeasuresRepository r) => data = r;
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
+        public IActionResult OnGet() => Page();
+        
         [BindProperty]
         public MeasureView MeasureView { get; set; }
 
@@ -31,13 +21,8 @@ namespace Abc.Soft
         // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Measures.Add(MeasureView);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid) return Page();
+            await  data.Update(MeasureViewFactory.Create(MeasureView));
 
             return RedirectToPage("./Index");
         }
