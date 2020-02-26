@@ -1,21 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Abc.Facade;
+using Abc.Infra.Quantity;
 
 namespace Abc.Soft.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        } 
-        public DbSet<Abc.Facade.MeasureView> Measures { get; set; }
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<MeasureView>().ToTable(nameof(Measures));
+            QuantityDbContext.InitializeTables(builder);
         }
     }
 }
