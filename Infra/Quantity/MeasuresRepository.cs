@@ -17,7 +17,7 @@ namespace Abc.Infra.Quantity
             throw new System.NotImplementedException();
         }
 
-        public Task<Measure> Get(string id)
+        public async Task<Measure> Get(string id)
         {
             throw new System.NotImplementedException();
         }
