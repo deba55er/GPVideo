@@ -19,7 +19,8 @@ namespace Abc.Pages.Extensions
             return new HtmlContentBuilder(s);
         }
 
-        private static IList<object> htmlString<TClassType, TPropertyType>(IHtmlHelper<TClassType> htmlHelper, Expression<Func<TClassType, TPropertyType>> expression)
+        internal static List<object> htmlString<TClassType, TPropertyType>(IHtmlHelper<TClassType> htmlHelper, Expression<Func<TClassType, 
+            TPropertyType>> expression)
         {
             return new List<object>
             {

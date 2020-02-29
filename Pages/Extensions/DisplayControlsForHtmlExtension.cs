@@ -17,9 +17,10 @@ namespace Abc.Pages.Extensions
             return new HtmlContentBuilder(s);
         }
 
-        internal static IList<object> htmlString<TClassType, TPropertyType>(IHtmlHelper htmlHelper, Expression<Func<TClassType, TPropertyType>> expression)
+        internal static List<object> htmlString<TClassType, TPropertyType>(
+            IHtmlHelper<TClassType> htmlHelper, Expression<Func<TClassType, TPropertyType>> expression)
         {
-            new List<object>
+           return new List<object>
             {
                 new HtmlString("<dt class=\"col-sm-2\">"),
                 htmlHelper.DisplayNameFor(expression),
