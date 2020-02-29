@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abc.Facade;
 using Abc.Facade.Quantity;
@@ -11,8 +12,11 @@ namespace Abc.Soft
         public IndexModel(IMeasuresRepository r) : base(r) { }
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder)
         {
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            data.SortOrder = sortOrder;
             var l = await data.Get();
             Items = new List<MeasureView>();
 
@@ -21,5 +25,9 @@ namespace Abc.Soft
                 Items.Add(MeasureViewFactory.Create(e));
             }
         }
+
+        public string DateSort { get; set; }
+
+        public string NameSort { get; set; }
     }
 }
