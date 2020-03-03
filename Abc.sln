@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeLog", "TimeLog", "{C27E
 		Time recording log.xlsx = Time recording log.xlsx
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{331416E7-8A81-457D-B195-9388CCF751C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{36B7C74B-AA6F-4819-8A7B-170CF0529DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36B7C74B-AA6F-4819-8A7B-170CF0529DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36B7C74B-AA6F-4819-8A7B-170CF0529DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{331416E7-8A81-457D-B195-9388CCF751C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{331416E7-8A81-457D-B195-9388CCF751C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{331416E7-8A81-457D-B195-9388CCF751C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{331416E7-8A81-457D-B195-9388CCF751C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
