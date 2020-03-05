@@ -11,13 +11,7 @@ namespace Tests
         [TestInitialize]
         public virtual void TestInitialize()
         {
-            type = obj.GetType();
-        }
-
-        [TestMethod]
-        public void CanCreateTest()
-        {
-            Assert.IsNotNull(obj);
+            type = typeof(TClass);
         }
 
         [TestMethod]
