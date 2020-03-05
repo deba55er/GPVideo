@@ -21,19 +21,15 @@ namespace Tests.Data.Common
         [TestMethod]
         public void ValidFromTest()
         {
-            var d = DateTime.Now;
-            Assert.AreNotEqual(d, obj.ValidFrom);
-            obj.ValidFrom = d;
-            Assert.AreEqual(d, obj.ValidFrom);
+            isNunllableProperty(() => obj.ValidFrom, x => obj.ValidFrom = x, () => DateTime.Now);
         }
 
         [TestMethod]
         public void ValidToTest()
         {
-            var d = DateTime.Now;
-            Assert.AreNotEqual(d, obj.ValidTo);
-            obj.ValidTo = d;
-            Assert.AreEqual(d, obj.ValidTo);
+            isNunllableProperty(() => obj.ValidTo, x => obj.ValidTo = x, () => DateTime.Now);
         }
+
+        
     }
 }
