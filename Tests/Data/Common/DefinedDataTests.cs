@@ -20,7 +20,7 @@ namespace Tests.Data.Common
         [TestMethod]
         public void DefinitionTest()
         {
-            isNunllableProperty(()=>obj.Definition, x => obj.Definition = x, () => "aaaaa");
+            isNunllableProperty(()=>obj.Definition, x => obj.Definition = x);
         }
     }
 }

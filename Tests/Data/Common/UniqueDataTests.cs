@@ -17,5 +17,13 @@ namespace Tests.Data.Common
             obj = new testClass();
         }
 
+        [TestMethod]
+        public void IdTest()
+        {
+            isNunllableProperty(() => obj.Id, x => obj.Id = x);
+        }
+
+
+
     }
 }

@@ -8,7 +8,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.Data.Quantity
 {
     [TestClass]
-    public class UnitDataTests: SealedClassTest<UnitData, DefinedEntityData>
+    public class UnitDataTests : SealedClassTest<UnitData, DefinedEntityData>
     {
+
+        [TestMethod]
+        public void MeasureIdTest()
+        {
+            isNunllableProperty(() => obj.MeasureID, x => obj.MeasureID = x);
+        }
+
+
     }
 }
