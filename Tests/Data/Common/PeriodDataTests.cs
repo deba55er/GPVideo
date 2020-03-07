@@ -1,4 +1,3 @@
-using System;
 using Abc.Data.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
