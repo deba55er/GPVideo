@@ -9,12 +9,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra.Quantity
 {
-    public class MeasuresRepository : PaginatedRepository<Measure>, IMeasuresRepository
+    public class MeasuresRepository : UniqueEntityRepository<Measure, MeasureData>, IMeasuresRepository
     {
-        
-        public async Task<List<Measure>> Get()
+        public MeasuresRepository(QuantityDbContext c) : base(c, c.Measures)
         {
+        }
 
+        public override async Task<List<Measure>> Get()
+        {
             var list = await createPaged (createFiltered(createSorted()));
 
             HasNextPage = list.HasNextPage;
@@ -44,8 +46,7 @@ namespace Abc.Infra.Quantity
 
         private IQueryable<MeasureData> createSorted()
         {
-            IQueryable<MeasureData> measures = from s in db.Measures
-                select s;
+            IQueryable<MeasureData> measures = from s in dbSet select s;
 
             switch (SortOrder)
             {
@@ -65,6 +66,7 @@ namespace Abc.Infra.Quantity
 
             return measures.AsNoTracking();
         }
+
 
 
     }

@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Abc.Data.Common;
 using Abc.Domain.Common;
-using Abc.Domain.Quantity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra
 {
-    public class BaseRepository<TDomain, TData> : ICrudMethods<TDomain> 
+    public abstract class BaseRepository<TDomain, TData> : ICrudMethods<TDomain> 
         where TData : PeriodData, new()
         where TDomain : Entity<TData>, new()
     {
         protected internal DbContext db;
         protected internal DbSet<TData> dbSet;
-        public BaseRepository(DbContext c, DbSet<TData> s)
+        protected BaseRepository(DbContext c, DbSet<TData> s)
         {
             db = c;
             dbSet = s;
         }
-        public Task<List<TDomain>> Get()
+        public virtual async Task<List<TDomain>> Get()
         {
             throw new NotImplementedException();
         }
@@ -29,12 +27,14 @@ namespace Abc.Infra
         {
             if (id is null) return new TDomain();
 
-            var d = await dbSet.FirstOrDefaultAsync(m => m.Id == id);
+            var d = await getData(id);
 
-            var obj = new TDomain {Data = d};
+            var obj = new TDomain { Data = d };
 
             return obj;
         }
+
+        protected abstract Task<TData> getData(string id);
 
         public async Task Delete(string id)
         {
