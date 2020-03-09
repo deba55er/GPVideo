@@ -10,15 +10,22 @@ namespace Abc.Pages.Quantity
     {
         protected internal readonly IMeasuresRepository data;
 
-        protected internal MeasuresPage(IMeasuresRepository r) => data = r;
-        
+        protected internal MeasuresPage(IMeasuresRepository r)
+        {
+            data = r;
+            PageTitle = "Measures";
+        }
+
         [BindProperty]
         public MeasureView Item { get; set; }
         public IList<MeasureView> Items { get; set; }
 
-        public string CurrentSort { get; set; } = "Mingi pealkiri";
-        public string CurrentFilter { get; set; } = "Current sort";
-        public string PageTitle { get; set; } = "Current Filter";
+
+        public string PageTitle { get; set; }
+        public string ItemId => Item.Id;
+        public string PageSubTitle { get; set; } = "";
+        public string CurrentSort { get; set; } = "Current Filter";
+        public string CurrentFilter { get; set; } = "Current filter";
         public int PageIndex { get; set; } = 3;
         public int TotalPages { get; set; } = 10;
     }
