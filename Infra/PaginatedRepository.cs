@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Abc.Domain.Common;
+﻿using Abc.Domain.Common;
 
 namespace Abc.Infra
 {
@@ -10,5 +7,6 @@ namespace Abc.Infra
         public int PageIndex { get; set; }
         public bool HasNextPage { get; set; }
         public bool HasPreviousPage { get; set; }
+        public int PageSize { get; set; } = 1;
     }
 }
