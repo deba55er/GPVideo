@@ -15,5 +15,11 @@ namespace Abc.Pages.Quantity
         [BindProperty]
         public MeasureView Item { get; set; }
         public IList<MeasureView> Items { get; set; }
+
+        public string CurrentSort { get; set; } = "Mingi pealkiri";
+        public string CurrentFilter { get; set; } = "Current sort";
+        public string PageTitle { get; set; } = "Current Filter";
+        public int PageIndex { get; set; } = 3;
+        public int TotalPages { get; set; } = 10;
     }
 }
