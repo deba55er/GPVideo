@@ -15,9 +15,15 @@ namespace Abc.Soft
         public async Task OnGetAsync(string sortOrder,
             string currentFilter, string searchString, int? pageIndex)
         {
+            sortOrder = string.IsNullOrEmpty(sortOrder) ? "Name" : sortOrder;
             CurrentSort = sortOrder;
-            NameSort = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+            NameSort = sortOrder == "Name" ? "Name_desc" : "Name";
+            IdSort = sortOrder == "Id" ? "Id_desc" : "Id";
+            CodeSort = sortOrder == "Code" ? "Code_desc" : "Code";
+            DefinitionSort = sortOrder == "Definition" ? "Definition_desc" : "Definition";
+            ValidFromSort = sortOrder == "ValidFrom" ? "ValidFrom_desc" : "ValidFrom";
+            ValidToSort = sortOrder == "ValidTo" ? "ValidTo_desc" : "ValidTo";
+
 
             if (searchString != null)
             {
@@ -45,8 +51,12 @@ namespace Abc.Soft
         }
 
         public string CurrentSort { get; set; }
-        public string DateSort { get; set; }
+        public string ValidFromSort { get; set; }
         public string NameSort { get; set; }
+        public string IdSort { get; set; }
+        public string CodeSort { get; set; }
+        public string DefinitionSort { get; set; }
+        public string ValidToSort { get; set; }
         
         public bool HasPreviousPage { get; set; }
         public bool HasNextPage { get; set; }
