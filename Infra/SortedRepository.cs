@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Abc.Data.Common;
 using Abc.Domain.Common;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra
@@ -58,7 +59,7 @@ namespace Abc.Infra
         internal IQueryable<TData> setOrderBy(IQueryable<TData> data, Expression<Func<TData, object>> e)
             => IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
 
-        internal bool IsDescending() => SortOrder.EndsWith(DescendingString);
+        internal bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
 
     }
 
