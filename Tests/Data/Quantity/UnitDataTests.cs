@@ -2,7 +2,7 @@
 using Abc.Data.Quantity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Data.Quantity
+namespace Abc.Tests.Data.Quantity
 {
     [TestClass]
     public class UnitDataTests : SealedClassTest<UnitData, DefinedEntityData>
@@ -11,7 +11,7 @@ namespace Tests.Data.Quantity
         [TestMethod]
         public void MeasureIdTest()
         {
-            isNunllableProperty(() => obj.MeasureID, x => obj.MeasureID = x);
+            IsNullableProperty(() => obj.MeasureID, x => obj.MeasureID = x);
         }
 
 

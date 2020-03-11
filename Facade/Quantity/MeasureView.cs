@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Abc.Facade
+namespace Abc.Facade.Quantity
 {
     public class MeasureView
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Abc.Facade;
+using Abc.Domain.Quantity;
 using Abc.Facade.Quantity;
 using Abc.Pages.Quantity;
 
-namespace Abc.Soft
+namespace Abc.Soft.Areas.Quantity.Pages.Measures
 {
     public class IndexModel : MeasuresPage
     {

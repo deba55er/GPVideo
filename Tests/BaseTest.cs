@@ -2,7 +2,7 @@ using System;
 using Abc.Aids;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Abc.Tests
 {
     public abstract class BaseTest<TClass, TBaseClass>
     {
@@ -21,14 +21,14 @@ namespace Tests
             Assert.AreEqual(typeof(TBaseClass), type.BaseType);
         }
 
-        protected static void isNunllableProperty<T>(Func<T> get, Action<T> set)
+        protected static void IsNullableProperty<T>(Func<T> get, Action<T> set)
         {
-            isProperty(get, set);
+            IsProperty(get, set);
             set(default);
             Assert.IsNull(get());
         }
 
-        protected static void isProperty<T>(Func<T> get, Action<T> set)
+        protected static void IsProperty<T>(Func<T> get, Action<T> set)
         {
             var d = (T)GetRandom.Value(typeof(T));
             Assert.AreNotEqual(d, get());

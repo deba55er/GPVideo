@@ -1,7 +1,6 @@
 ﻿using Abc.Domain.Common;
-using Abc.Domain.Quantity;
 
-namespace Abc.Facade.Quantity
+namespace Abc.Domain.Quantity
 {
     public interface IMeasuresRepository:IRepository<Measure>
     {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
-using Abc.Facade.Quantity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra.Quantity
