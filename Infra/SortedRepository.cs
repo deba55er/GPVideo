@@ -20,11 +20,18 @@ namespace Abc.Infra
 
         protected SortedRepository(DbContext c, DbSet<TData> s) : base(c, s) { }
 
-        protected internal IQueryable<TData> SetSorting(IQueryable<TData> data)
+        protected internal override IQueryable<TData> createSqlQuery()
+        {
+            var query = base.createSqlQuery();
+            query = AddSorting(query);
+            return query;
+        }
+
+        protected internal IQueryable<TData> AddSorting(IQueryable<TData> query)
         {
             var expression = createExpression();
 
-            return expression is null ? data : setOrderBy(data, expression);
+            return expression is null ? query : AddOrderBy(query, expression);
         }
 
         internal Expression<Func<TData, object>> createExpression()
@@ -56,17 +63,17 @@ namespace Abc.Infra
             return idx > 0 ? SortOrder.Remove(idx) : SortOrder;
         }
 
-        internal IQueryable<TData> setOrderBy(IQueryable<TData> data, Expression<Func<TData, object>> e)
+        internal IQueryable<TData> AddOrderBy(IQueryable<TData> query, Expression<Func<TData, object>> e)
         {
-            if (data is null) return null;
-            if (e is null) return data;
+            if (query is null) return null;
+            if (e is null) return query;
             try
             {
-                return IsDescending() ? data.OrderByDescending(e) : data.OrderBy(e);
+                return IsDescending() ? query.OrderByDescending(e) : query.OrderBy(e);
             }
             catch
             {
-                return data;
+                return query;
             }
 
         }
