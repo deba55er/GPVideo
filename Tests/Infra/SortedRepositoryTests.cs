@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -30,7 +31,8 @@ namespace Abc.Tests.Infra
         [TestInitialize] public override void TestInitialize()
         {
             base.TestInitialize();
-            var c = new QuantityDbContext(new DbContextOptions<QuantityDbContext>());
+            var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options;
+            var c = new QuantityDbContext(options);
             obj = new TestClass(c, c.Measures);
         }
 
@@ -53,7 +55,41 @@ namespace Abc.Tests.Infra
 
         [TestMethod] public void CreateExpressionTest()
         {
-            Assert.Inconclusive();
+            string s;
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.ValidFrom));
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.ValidTo));
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.Id));
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.Name));
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.Code));
+            testCreateExpression(GetMember.Name<MeasureData>(x => x.Definition));
+
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.ValidFrom), s + obj.DescendingString);
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.ValidTo), s + obj.DescendingString);
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.Id), s + obj.DescendingString);
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.Name), s + obj.DescendingString);
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.Code), s + obj.DescendingString);
+            testCreateExpression(s = GetMember.Name<MeasureData>(x => x.Definition), s + obj.DescendingString);
+
+            testNullExpression(GetRandom.String());
+            testNullExpression(string.Empty);
+            testNullExpression(null);
+        }
+
+        private void testNullExpression(string name)
+        {
+            obj.SortOrder = name;
+            var lambda = obj.createExpression();
+            Assert.IsNull(lambda);
+        }
+
+        private void testCreateExpression(string expected, string name = null)
+        {
+            name ??= expected;
+            obj.SortOrder = name;
+            var lambda = obj.createExpression();
+            Assert.IsNotNull(lambda);
+            Assert.IsInstanceOfType(lambda, typeof(Expression<Func<MeasureData, object>>));
+            Assert.IsTrue(lambda.ToString().Contains(expected));
         }
 
         [TestMethod] public void LambdaExpressionTest()
@@ -112,7 +148,14 @@ namespace Abc.Tests.Infra
 
         [TestMethod] public void SetOrderByTest()
         {
-            Assert.Inconclusive();
+            Expression<Func<MeasureData, object>> expression = measureData => measureData.ToString();
+            Assert.IsNull(obj.setOrderBy(null, null));
+            IQueryable<MeasureData> data = obj.dbSet;
+            Assert.AreEqual(data, obj.setOrderBy(data, null));
+            Assert.AreEqual(data, obj.setOrderBy(data, expression));
+            var data1 = obj.setOrderBy(data, x => x.Id);
+            Assert.AreEqual(data,data1);
+
         }
 
         [TestMethod] public void IsDescendingTest()
