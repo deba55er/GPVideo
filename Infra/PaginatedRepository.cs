@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using Abc.Data.Common;
 using Abc.Domain.Common;
@@ -12,13 +11,13 @@ namespace Abc.Infra
         where TDomain : Entity<TData>, new()
     {
         public int PageIndex { get; set; }
-        public int TotalPages = getTotalPages(PageSize);
+        public int TotalPages => getTotalPages(PageSize);
 
-     public bool HasNextPage => PageIndex < TotalPages;
+        public bool HasNextPage => PageIndex < TotalPages;
         public bool HasPreviousPage => PageIndex > 1;
         public int PageSize { get; set; } = 5;
 
-        protected  PaginatedRepository(DbContext c, DbSet<TData> s) : base(c, s)
+        protected PaginatedRepository(DbContext c, DbSet<TData> s) : base(c, s)
         {
         }
         internal int getTotalPages(in int pageSize)
@@ -29,10 +28,7 @@ namespace Abc.Infra
             return pages;
         }
 
-        internal int CountTotalPages(int count, in int pageSize)
-        {
-            return (int)Math.Ceiling(count / (double) pageSize);
-        }
+        internal int CountTotalPages(int count, in int pageSize) => (int)Math.Ceiling(count / (double)pageSize);
 
         internal int GetItemsCount()
         {
@@ -48,13 +44,8 @@ namespace Abc.Infra
             return query;
         }
 
-        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query)
-        {
-            var q = query.Skip(
-                    (PageIndex - 1) * PageSize)
-                .Take(PageSize);
-
-            return q;
-        }
+        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query) => query
+            .Skip((PageIndex - 1) * PageSize)
+            .Take(PageSize);
     }
 }

@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Abc.Data.Common;
 using Abc.Domain.Common;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abc.Infra
