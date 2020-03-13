@@ -29,14 +29,6 @@ namespace Abc.Infra
         {
             if (string.IsNullOrEmpty(SearchString)) return query;
             {
-
-
-                //           s => s.Name.Contains(SearchString)
-                //                  || s.Code.Contains(SearchString)
-                //                  || s.Id.Contains(SearchString)
-                //                  || s.Definition.Contains(SearchString)
-                //                  || s.ValidFrom.ToString().Contains(SearchString)
-                //                  || s.ValidTo.ToString().Contains(SearchString));
                 var expression = CreateWhereExpression();
 
                 return query.Where(expression);
@@ -52,10 +44,17 @@ namespace Abc.Infra
 
             foreach (var p in typeof(TData).GetProperties())
             {
-                var body = Expression.Property(param, p);
+                Expression body = Expression.Property(param, p);
+                if (p.PropertyType != typeof(string))
+                {
+                    body = Expression.Call(body, "ToString", null);
+                }
+
+                body = Expression.Call(body, "Contains", null, Expression.Constant(SearchString));
+                predicate = predicate is null ? body : Expression.Or(predicate, body);
             }
 
-            return Expression.Lambda<Func<TData, bool>>(predicate, param);
+            return predicate is null ? null : Expression.Lambda<Func<TData, bool>>(predicate, param);
         }
     }
 }

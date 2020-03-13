@@ -42,7 +42,7 @@ namespace Abc.Infra
 
         internal Expression<Func<TData, object>> lambdaExpression(PropertyInfo p)
         {
-            var param = Expression.Parameter(typeof(TData));
+            var param = Expression.Parameter(typeof(TData), "x");
             var property = Expression.Property(param, p);
             var body = Expression.Convert(property, typeof(object));
 
@@ -59,6 +59,7 @@ namespace Abc.Infra
         {
             if (string.IsNullOrEmpty(SortOrder)) return string.Empty;
             var idx = SortOrder.IndexOf(DescendingString, StringComparison.Ordinal);
+
             return idx > 0 ? SortOrder.Remove(idx) : SortOrder;
         }
 
