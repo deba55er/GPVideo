@@ -36,18 +36,18 @@ namespace Abc.Soft.Areas.Quantity.Pages.Measures
 
             CurrentFilter = searchString;
 
-            data.SortOrder = sortOrder;
+            db.SortOrder = sortOrder;
             SearchString = CurrentFilter;
-            data.SearchString = searchString;
-            data.PageIndex = pageIndex ?? 1;
-            PageIndex = data.PageIndex;
+            db.SearchString = searchString;
+            db.PageIndex = pageIndex ?? 1;
+            PageIndex = db.PageIndex;
 
-            var l = await data.Get();
+            var l = await db.Get();
             Items = new List<MeasureView>();
 
             foreach (var e in l)  Items.Add(MeasureViewFactory.Create(e));
-            HasNextPage = data.HasNextPage;
-            HasPreviousPage = data.HasPreviousPage;
+            HasNextPage = db.HasNextPage;
+            HasPreviousPage = db.HasPreviousPage;
         }
 
         public string CurrentSort { get; set; }
