@@ -17,8 +17,8 @@ namespace Abc.Facade.Quantity
                 ValidTo = v.ValidTo
             };
             return new Measure(d);
-        } 
-        
+        }
+
         public static MeasureView Create(Measure o)
         {
             var v = new MeasureView
