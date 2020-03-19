@@ -53,22 +53,22 @@ namespace Abc.Tests.Infra
 
         [TestMethod] public void SetSortingTest()
         {
-
-
             void Test(IQueryable<MeasureData> d, string sortOrder)
             {
                 obj.SortOrder = sortOrder + obj.DescendingString;
                 var set = obj.AddSorting(d);
                 Assert.IsNotNull(set);
                 Assert.AreNotEqual(d, set);
-                Assert.IsTrue(set.Expression.ToString()
-                    .Contains($"Abc.Data.Quantity.MeasureData]).OrderByDescending(Param_0 => Convert(Param_0.{sortOrder}, Object)"));
+                var str = set.Expression.ToString();
+                Assert.IsTrue(str
+                    .Contains($"Abc.Data.Quantity.MeasureData]).OrderByDescending(x => Convert(x.{sortOrder}, Object)"));
 
                 obj.SortOrder = sortOrder;
                 set = obj.AddSorting(d);
                 Assert.IsNotNull(set);
                 Assert.AreNotEqual(d, set);
-                Assert.IsTrue(set.Expression.ToString().Contains($"Abc.Data.Quantity.MeasureData]).OrderBy(Param_0 => Convert(Param_0.{sortOrder}, Object)"));
+                str = set.Expression.ToString();
+                Assert.IsTrue(str.Contains($"Abc.Data.Quantity.MeasureData]).OrderBy(x => Convert(x.{sortOrder}, Object)"));
             }
 
             Assert.IsNull(obj.AddSorting(null));
