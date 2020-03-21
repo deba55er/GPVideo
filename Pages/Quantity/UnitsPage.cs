@@ -38,5 +38,15 @@ namespace Abc.Pages.Quantity
         {
             return UnitViewFactory.Create(obj);
         }
+
+        public string GetMeasureName(string measureId)
+        {
+            foreach (var m in Measures)
+
+                if (m.Value == measureId)
+                    return m.Text;
+            return "Unspecified";
+
+        }
     }
 }

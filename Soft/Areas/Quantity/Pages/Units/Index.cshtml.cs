@@ -15,6 +15,5 @@ namespace Abc.Soft.Areas.Quantity.Pages.Units
             await GetList(sortOrder, currentFilter, searchString, pageIndex);
         }
 
-
     }
 }
