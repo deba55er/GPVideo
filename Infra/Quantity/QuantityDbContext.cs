@@ -25,7 +25,7 @@ namespace Abc.Infra.Quantity
             builder.Entity<MeasureData>().ToTable(nameof(Measures));
             builder.Entity<UnitData>().ToTable(nameof(Units));
             builder.Entity<SystemOfUnitsData>().ToTable(nameof(SystemsOfUnits));
-            builder.Entity<UnitFactorData>().ToTable(nameof(UnitsFactors)).HasKey(x=>new{x.UnitID, x.SystemOfUnitsID});
+            builder.Entity<UnitFactorData>().ToTable(nameof(UnitsFactors)).HasKey(x=>new{UnitID = x.UnitId, SystemOfUnitsID = x.SystemOfUnitsId});
         }
         
         

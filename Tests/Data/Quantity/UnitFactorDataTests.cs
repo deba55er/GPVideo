@@ -5,27 +5,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Abc.Tests.Data.Quantity
 {
     [TestClass]
-    public class UnitFactorDataTests : SealedClassTest<UnitFactorData, PeriodData>
+    public class UnitFactorDataTests : SealedClassTests<UnitFactorData, PeriodData>
     {
 
-        [TestMethod]
-        public void FactorTest()
+        [TestMethod] public void FactorTest()
         {
             IsProperty(() => obj.Factor, x => obj.Factor = x);
         }
 
 
-        [TestMethod]
-        public void SystemOfUnitsIdTest()
+        [TestMethod] public void SystemOfUnitsIdTest()
         {
-            IsNullableProperty(() => obj.SystemOfUnitsID, x => obj.SystemOfUnitsID = x);
+            IsNullableProperty(() => obj.SystemOfUnitsId, x => obj.SystemOfUnitsId = x);
         }
 
 
-        [TestMethod]
-        public void UnitIdTest()
+        [TestMethod] public void UnitIdTest()
         {
-            IsNullableProperty(() => obj.UnitID, x => obj.UnitID = x);
+            IsNullableProperty(() => obj.UnitId, x => obj.UnitId = x);
         }
     }
 }

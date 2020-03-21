@@ -13,7 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Abc.Tests.Infra
 {
-    [TestClass] public class SortedRepositoryTests : AbstractClassTest<SortedRepository<Measure, MeasureData>,
+    [TestClass] public class SortedRepositoryTests : AbstractClassTests<SortedRepository<Measure, MeasureData>,
         BaseRepository<Measure, MeasureData>>
     {
         private class TestClass : SortedRepository<Measure, MeasureData>

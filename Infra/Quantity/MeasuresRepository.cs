@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Abc.Data.Quantity;
+﻿using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
 
 namespace Abc.Infra.Quantity

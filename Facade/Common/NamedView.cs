@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Abc.Facade.Quantity;
 
 namespace Abc.Facade.Common
 {
