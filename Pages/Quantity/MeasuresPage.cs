@@ -13,6 +13,10 @@ namespace Abc.Pages.Quantity
         }
 
         public override string ItemId => Item.Id;
+
+        protected internal override string GetPageUrl() => "/Quantity/Measures";
+
+
         protected internal override Measure ToObject(MeasureView view)
         {
             return MeasureViewFactory.Create(view);

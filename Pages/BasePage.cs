@@ -27,6 +27,16 @@ namespace Abc.Pages
 
         public string PageTitle { get; set; }
         public string PageSubTitle => GetPageSubtitle();
+        public string IndexUrl => GetIndexUrl();
+
+        protected internal string GetIndexUrl()
+        {
+            return $"{PageUrl}/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}";
+        }
+
+        public string PageUrl => GetPageUrl();
+
+        protected internal abstract string GetPageUrl();
 
         protected internal virtual string GetPageSubtitle()
         {
@@ -68,8 +78,10 @@ namespace Abc.Pages
         public int TotalPages => db.TotalPages;
 
 
-        protected internal async Task<bool> AddObject()
+        protected internal async Task<bool> AddObject(string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             try
             {
                 if (!ModelState.IsValid) return false;
@@ -89,23 +101,28 @@ namespace Abc.Pages
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
 
-        protected internal async Task UpdateObject()
+        protected internal async Task UpdateObject(string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await db.Update(ToObject(Item));
-
         }
 
 
-        protected internal async Task GetObject(string id)
+        protected internal async Task GetObject(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             var o = await db.Get(id);
             Item = ToView(o);
         }
 
         protected internal abstract TView ToView(TDomain obj);
 
-        protected internal async Task DeleteObject(string id)
+        protected internal async Task DeleteObject(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await db.Delete(id);
         }
 

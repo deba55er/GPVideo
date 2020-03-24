@@ -30,6 +30,8 @@ namespace Abc.Pages.Quantity
 
         public override string ItemId => Item.Id;
 
+        protected internal override string GetPageUrl() => "/Quantity/Units";
+
         protected internal override string GetPageSubtitle()
         {
             return FixedValue is null 
