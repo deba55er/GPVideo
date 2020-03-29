@@ -34,7 +34,7 @@ namespace Abc.Tests
             return $"{assembly}.{name}";
         }
 
-        protected void isAllTested(string assemblyName,
+        protected void IsAllTested(string assemblyName,
             string namespaceName = null)
         {
             var l = getAssemblyClasses(assemblyName);

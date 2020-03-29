@@ -4,16 +4,13 @@ namespace Abc.Pages.Extensions
     public static class Constants
     {
         public const string Unspecified = "Unspecified";
-
         public const string CreateNewLinkTitle = "Create New";
         public const string EditLinkTitle = "Edit";
         public const string DetailsLinkTitle = "Details";
         public const string DeleteLinkTitle = "Delete";
-
         public const string BusinessMenuTitle = "Business";
         public const string PartiesMenuTitle = "Parties";
         public const string DataMenuTitle = "Data";
-
         public const string CountriesPageTitle = "Countries";
         public const string MeasuresPageTitle = "Measures";
         public const string OrdersPageTitle = "Orders";

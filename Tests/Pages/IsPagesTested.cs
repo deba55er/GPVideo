@@ -15,19 +15,19 @@ namespace Abc.Tests.Pages
         [TestMethod]
         public void IsExtensionsTested()
         {
-            isAllTested(assembly, Namespace("Extensions"));
+            IsAllTested(assembly, Namespace("Extensions"));
         }
 
         [TestMethod]
         public void IsQuantityTested()
         {
-            isAllTested(assembly, Namespace("Quantity"));
+            IsAllTested(assembly, Namespace("Quantity"));
         }
 
         [TestMethod]
         public void IsTested()
         {
-            isAllTested(base.Namespace("Pages"));
+            IsAllTested(base.Namespace("Pages"));
         }
 
     }
