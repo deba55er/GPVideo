@@ -8,6 +8,7 @@
             Url = url;
             PropertyName = propertyName ?? displayName;
         }
+
         public string DisplayName { get; }
         public string Url { get; }
         public string PropertyName { get; }

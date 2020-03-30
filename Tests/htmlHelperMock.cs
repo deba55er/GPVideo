@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Abc.Tests
 {
-    internal class htmlHelperMock<TModel> : IHtmlHelper<TModel>
+    internal class HtmlHelperMock<TModel> : IHtmlHelper<TModel>
     {
         public IHtmlContent ActionLink(string linkText, string actionName, string controllerName, string protocol, string hostname,
             string fragment, object routeValues, object htmlAttributes)

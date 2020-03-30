@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿      using System.Collections.Generic;
 using Abc.Facade.Quantity;
 using Abc.Pages.Extensions;
 using Microsoft.AspNetCore.Html;
@@ -15,7 +15,7 @@ namespace Abc.Tests.Pages.Extensions
         [TestMethod]
         public void EditControlsForTest()
         {
-            var obj = new htmlHelperMock<UnitView>().EditControlsFor(x => x.MeasureId);
+            var obj = new HtmlHelperMock<UnitView>().EditControlsFor(x => x.MeasureId);
             Assert.IsInstanceOfType(obj, typeof(HtmlContentBuilder));
         }
 
@@ -23,7 +23,7 @@ namespace Abc.Tests.Pages.Extensions
         public void HtmlStringsTest()
         {
             var expected = new List<string>{ "<div", "LabelFor", "EditorFor", "ValidationMessageFor", "</div>"};
-            var actual = EditControlsForHtmlExtension.HtmlStrings(new htmlHelperMock<MeasureView>(), x => x.Name);
+            var actual = EditControlsForHtmlExtension.HtmlStrings(new HtmlHelperMock<MeasureView>(), x => x.ValidFrom);
             TestHtml.Strings(actual, expected);
         }
     }
