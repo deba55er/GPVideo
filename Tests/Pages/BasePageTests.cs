@@ -173,7 +173,8 @@ namespace Abc.Tests.Pages
             Assert.Inconclusive();
         }
 
-        [TestMethod] public void DeleteObjectTest()
+        [TestMethod]
+        public void DeleteObjectTest()
         {
             Assert.Inconclusive();
         }
