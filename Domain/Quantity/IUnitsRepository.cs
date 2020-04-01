@@ -2,6 +2,5 @@
 
 namespace Abc.Domain.Quantity
 {
-    public interface IUnitsRepository : IRepository<Unit> {
-    }
+    public interface IUnitsRepository : IRepository<Unit> { }
 }
