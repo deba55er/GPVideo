@@ -29,6 +29,8 @@ namespace Abc.Tests.Infra
                 await Task.CompletedTask;
                 return new MeasureData();
             }
+
+            protected override string GetId(Measure entity) => entity?.Data?.Id;
         }
 
         [TestInitialize] public override void TestInitialize()
