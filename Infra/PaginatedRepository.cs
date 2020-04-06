@@ -44,7 +44,7 @@ namespace Abc.Infra
             return query;
         }
 
-        private IQueryable<TData> AddSkipAndTake(IQueryable<TData> query)
+        internal IQueryable<TData> AddSkipAndTake(IQueryable<TData> query)
         {
             if (PageIndex < 1) return query;
             return query
