@@ -4,6 +4,7 @@ using Abc.Soft.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Abc.Soft.Migrations
 {
@@ -43,6 +44,28 @@ namespace Abc.Soft.Migrations
                     b.ToTable("Measures");
                 });
 
+            modelBuilder.Entity("Abc.Data.Quantity.MeasureTermData", b =>
+                {
+                    b.Property<string>("MasterId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TermId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Power")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ValidTo")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MasterId", "TermId");
+
+                    b.ToTable("MeasureTerms");
+                });
+
             modelBuilder.Entity("Abc.Data.Quantity.SystemOfUnitsData", b =>
                 {
                     b.Property<string>("Id")
@@ -79,7 +102,7 @@ namespace Abc.Soft.Migrations
                     b.Property<string>("Definition")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MeasureID")
+                    b.Property<string>("MeasureId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -98,10 +121,10 @@ namespace Abc.Soft.Migrations
 
             modelBuilder.Entity("Abc.Data.Quantity.UnitFactorData", b =>
                 {
-                    b.Property<string>("UnitID")
+                    b.Property<string>("UnitId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SystemOfUnitsID")
+                    b.Property<string>("SystemOfUnitsId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("Factor")
@@ -113,9 +136,31 @@ namespace Abc.Soft.Migrations
                     b.Property<DateTime?>("ValidTo")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("UnitID", "SystemOfUnitsID");
+                    b.HasKey("UnitId", "SystemOfUnitsId");
 
                     b.ToTable("UnitsFactors");
+                });
+
+            modelBuilder.Entity("Abc.Data.Quantity.UnitTermData", b =>
+                {
+                    b.Property<string>("MasterId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TermId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Power")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ValidTo")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("MasterId", "TermId");
+
+                    b.ToTable("UnitTerms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
