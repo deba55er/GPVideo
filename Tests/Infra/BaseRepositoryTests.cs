@@ -44,13 +44,14 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void GetTest()
         {
-            var count = GetRandom.UInt8(15, 30);    //siin puudub countBefore videost 49, aga töötab ilma selleta hästi
+            var count = GetRandom.UInt8(15, 30);
+            var countBefore = obj.Get().GetAwaiter().GetResult().Count;
             for (var i = 0; i < count; i++)
             {
                 data = GetRandom.Object<MeasureData>();
                 AddTest();
             }
-            Assert.AreEqual(count, obj.Get().GetAwaiter().GetResult().Count);
+            Assert.AreEqual(count + countBefore, obj.Get().GetAwaiter().GetResult().Count);
         }
 
         [TestMethod]
