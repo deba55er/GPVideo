@@ -23,11 +23,24 @@ namespace Abc.Tests.Infra.Quantity
                 .UseInMemoryDatabase("TestDb").Options;
             db = new QuantityDbContext(options);
             obj = new MeasuresRepository(db);
-            foreach (var p in db.Measures)
-                db.Entry(p).State = EntityState.Deleted;
             count = GetRandom.UInt8(20, 40);
+            CleanDbSet();
             AddItems();
         }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CleanDbSet();
+        }
+
+        private void CleanDbSet()
+        {
+            foreach (var p in db.Measures)
+                db.Entry(p).State = EntityState.Deleted;
+            db.SaveChanges();
+        }
+
 
         private void AddItems()
         {
@@ -36,7 +49,7 @@ namespace Abc.Tests.Infra.Quantity
         }
 
         protected override Type GetBaseType() => typeof(UniqueEntityRepository<Measure, MeasureData>);
-        
+
 
         protected override void TestGetList()
         {
@@ -44,9 +57,9 @@ namespace Abc.Tests.Infra.Quantity
             var l = obj.Get().GetAwaiter().GetResult();
             Assert.AreEqual(obj.PageSize, l.Count);
         }
-        
-        protected override string GetId(MeasureData d) => d.Id; 
-        
+
+        protected override string GetId(MeasureData d) => d.Id;
+
         protected override Measure GetObject(MeasureData d) => new Measure(d);
 
         protected override void SetId(MeasureData d, string id) => d.Id = id;

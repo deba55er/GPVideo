@@ -111,7 +111,7 @@ namespace Abc.Soft.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UnitsFactors",
+                name: "UnitFactors",
                 columns: table => new
                 {
                     UnitId = table.Column<string>(nullable: false),
@@ -316,7 +316,7 @@ namespace Abc.Soft.Migrations
                 name: "Units");
 
             migrationBuilder.DropTable(
-                name: "UnitsFactors");
+                name: "UnitFactors");
 
             migrationBuilder.DropTable(
                 name: "UnitTerms");

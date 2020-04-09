@@ -15,9 +15,9 @@ namespace Abc.Tests.Infra.Quantity {
 
         private DbContextOptions<QuantityDbContext> options;
 
-        private class testClass : QuantityDbContext {
+        private class TestClass : QuantityDbContext {
 
-            public testClass(DbContextOptions<QuantityDbContext> o) : base(o) { }
+            public TestClass(DbContextOptions<QuantityDbContext> o) : base(o) { }
 
             public ModelBuilder RunOnModelCreating() {
                 var set = new ConventionSet();
@@ -38,7 +38,7 @@ namespace Abc.Tests.Infra.Quantity {
 
         [TestMethod] public void InitializeTablesTest() 
         {
-            static void testKey<T>(IMutableEntityType entity, params Expression<Func<T, object>>[] values) {
+            static void TestKey<T>(IMutableEntityType entity, params Expression<Func<T, object>>[] values) {
                 var key = entity.FindPrimaryKey();
 
                 if (values is null) Assert.IsNull(key);
@@ -49,23 +49,23 @@ namespace Abc.Tests.Infra.Quantity {
                     }
             }
 
-            static void testEntity<T>(ModelBuilder b, params Expression<Func<T, object>>[] values) {
+            static void TestEntity<T>(ModelBuilder b, params Expression<Func<T, object>>[] values) {
                 var name = typeof(T).FullName ?? string.Empty;
                 var entity = b.Model.FindEntityType(name);
                 Assert.IsNotNull(entity, name);
-                testKey(entity, values);
+                TestKey(entity, values);
             }
 
             QuantityDbContext.InitializeTables(null);
-            var o = new testClass(options);
+            var o = new TestClass(options);
             var builder = o.RunOnModelCreating();
             QuantityDbContext.InitializeTables(builder);
-            testEntity<SystemOfUnitsData>(builder);
-            testEntity<MeasureTermData>(builder, x => x.TermId, x => x.MasterId);
-            testEntity<MeasureData>(builder);
-            testEntity<UnitData>(builder);
-            testEntity<UnitTermData>(builder, x => x.TermId, x => x.MasterId);
-            testEntity<UnitFactorData>(builder, x =>x.UnitId, x=> x.SystemOfUnitsId);
+            TestEntity<SystemOfUnitsData>(builder);
+            TestEntity<MeasureTermData>(builder, x => x.TermId, x => x.MasterId);
+            TestEntity<MeasureData>(builder);
+            TestEntity<UnitData>(builder);
+            TestEntity<UnitTermData>(builder, x => x.TermId, x => x.MasterId);
+            TestEntity<UnitFactorData>(builder, x =>x.UnitId, x=> x.SystemOfUnitsId);
         }
 
         [TestMethod]
@@ -79,8 +79,8 @@ namespace Abc.Tests.Infra.Quantity {
             IsNullableProperty(obj, nameof(obj.SystemsOfUnits), typeof(DbSet<SystemOfUnitsData>)); 
 
         [TestMethod]
-        public void UnitsFactorsTest() =>
-            IsNullableProperty(obj, nameof(obj.UnitsFactors), typeof(DbSet<UnitFactorData>));
+        public void UnitFactorsTest() =>
+            IsNullableProperty(obj, nameof(obj.UnitFactors), typeof(DbSet<UnitFactorData>));
 
         [TestMethod]
         public void UnitTermsTest() =>

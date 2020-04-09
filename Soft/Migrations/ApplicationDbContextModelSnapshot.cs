@@ -138,7 +138,7 @@ namespace Abc.Soft.Migrations
 
                     b.HasKey("UnitId", "SystemOfUnitsId");
 
-                    b.ToTable("UnitsFactors");
+                    b.ToTable("UnitFactors");
                 });
 
             modelBuilder.Entity("Abc.Data.Quantity.UnitTermData", b =>
