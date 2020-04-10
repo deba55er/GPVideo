@@ -11,7 +11,7 @@ namespace Abc.Infra
         where TDomain : Entity<TData>, new()
     {
         public int PageIndex { get; set; }
-        public int TotalPages => getTotalPages(PageSize);
+        public int TotalPages => GetTotalPages(PageSize);
 
         public bool HasNextPage => PageIndex < TotalPages;
         public bool HasPreviousPage => PageIndex > 1;
@@ -20,7 +20,7 @@ namespace Abc.Infra
         protected PaginatedRepository(DbContext c, DbSet<TData> s) : base(c, s)
         {
         }
-        internal int getTotalPages(in int pageSize)
+        internal int GetTotalPages(in int pageSize)
         {
             var count = GetItemsCount();
             var pages = CountTotalPages(count, pageSize);

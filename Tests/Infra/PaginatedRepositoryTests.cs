@@ -22,7 +22,7 @@ namespace Abc.Tests.Infra
 
             protected internal override Measure ToDomainObject(MeasureData d) => new Measure(d);
 
-            protected override async Task<MeasureData> getData(string id)
+            protected override async Task<MeasureData> GetData(string id)
                 => await dbSet.FirstOrDefaultAsync(m => m.Id == id);
 
 
@@ -104,7 +104,7 @@ namespace Abc.Tests.Infra
         public void GetTotalPagesTest()
         {
             var expected = (int)Math.Ceiling(count / (double)obj.PageSize);
-            var totalPagesCount = obj.getTotalPages(obj.PageSize);
+            var totalPagesCount = obj.GetTotalPages(obj.PageSize);
             Assert.AreEqual(expected, totalPagesCount);
         }
 

@@ -42,19 +42,19 @@ namespace Abc.Infra
         {
             if (id is null) return new TDomain();
 
-            var d = await getData(id);
+            var d = await GetData(id);
 
-            var obj = new TDomain { Data = d };
+            var obj = ToDomainObject(d);
 
             return obj;
         }
 
-        protected abstract Task<TData> getData(string id);
+        protected abstract Task<TData> GetData(string id);
 
         public async Task Delete(string id)
         {
             if (id is null) return;
-            var v = await dbSet.FindAsync(id);
+            var v = await GetData(id);
 
             if (v is null) return;
             dbSet.Remove(v);
@@ -73,7 +73,7 @@ namespace Abc.Infra
         public async Task Update(TDomain obj)
         {
             if (obj is null) return;
-            var v = await dbSet.FindAsync(GetId(obj));
+            var v = await GetData(GetId(obj));
             if (v is null) return;
             dbSet.Remove(v);
             dbSet.Add(obj.Data);
